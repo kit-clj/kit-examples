@@ -3,6 +3,7 @@
    [kit.guestbook.web.controllers.guestbook :as guestbook]
    [kit.guestbook.web.middleware.exception :as exception]
    [kit.guestbook.web.pages.layout :as layout]
+   [kit.guestbook.web.routes.utils :as utils]
    [integrant.core :as ig]
    [reitit.ring.middleware.muuntaja :as muuntaja]
    [reitit.ring.middleware.parameters :as parameters]
@@ -14,23 +15,20 @@
                      :title "Invalid anti-forgery token"})]
     #(wrap-anti-forgery % {:error-response error-page})))
 
-(defn home [request]  
-  (layout/render request "home.html" {:messages (guestbook/get-messages request)}))
-
-(defn error [request]
-  (layout/render request "error.html" {}))
+(defn home [{:keys [flash] :as request}]
+  (let [{:keys [query-fn]} (utils/route-data request)]
+    (layout/render request "home.html" {:messages (query-fn :get-messages {})
+                                        :errors (:errors flash)})))
 
 ;; Routes
 (defn page-routes [base-path]
   [base-path
-   ["/" {:get home}]
-   ["/error" {:get error}]
+   ["/" {:get home}]   
    ["/save-message" {:post guestbook/save-message!}]])
 
 (defn route-data [opts]
   (merge opts
-         {:swagger    {:id ::api}
-          :middleware [;; Default middleware for pages
+         {:middleware [;; Default middleware for pages
                        (wrap-page-defaults)
                 ;; query-params & form-params
                        parameters/parameters-middleware

@@ -20,8 +20,7 @@
    ["/health"
     {:get health/healthcheck!}]])
 
-(defn route-data
-  [opts]
+(defn route-data [opts]
   (merge
     opts
     {:coercion   malli/coercion

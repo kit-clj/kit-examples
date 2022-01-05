@@ -6,6 +6,7 @@
     <title>Welcome to guestbook</title>
 
     <!-- styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link href="/css/screen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -13,14 +14,14 @@
     <nav>
     </nav>
     <section>
-        <div class="content">
+        <div class="content container">
             <div class="columns">
                 <div class="column">
                     <h3>Messages</h3>
                     <ul class="messages">
                         {% for item in messages %}
                         <li>
-                            <time>{{item.timestamp|format-date}}</time>
+                            <time>{{item.timestamp}}</time>
                             <p>{{item.message}}</p>
                             <p> - {{item.name}}</p>
                         </li>
@@ -30,21 +31,24 @@
             </div>
             <div class="columns">
                 <div class="column">
-                    <form method="POST" action="/">
+                    {% if errors.unknown %}
+                    <div class="notification is-danger">{{errors.unknown}}</div>
+                    {% endif %}
+                    <form method="POST" action="/save-message">
                         {% csrf-field %}
                         <p>
                             Name:
                             <input class="input" type="text" name="name" value="{{name}}" />
                         </p>
                         {% if errors.name %}
-                        <div class="notification is-danger">{{errors.name|join}}</div>
+                        <div class="notification is-danger">{{errors.name}}</div>
                         {% endif %}
                         <p>
                             Message:
                             <textarea class="textarea" name="message">{{message}}</textarea>
                         </p>
                         {% if errors.message %}
-                        <div class="notification is-danger">{{errors.message|join}}</div>
+                        <div class="notification is-danger">{{errors.message}}</div>
                         {% endif %}
                         <input type="submit" class="button is-primary" value="comment" />
                     </form>

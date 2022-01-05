@@ -10,8 +10,7 @@
 (def selmer-opts {:custom-resource-path (clojure.java.io/resource "html")})
 
 (defn init-selmer!
-  []
-  (parser/add-filter! :format-date #(.format (java.text.SimpleDateFormat. "yyyy-MM-dd HH:mm") (java.util.Date. %)))
+  []  
   (parser/add-tag! :csrf-field (fn [_ _] (anti-forgery-field))))
 
 (defn render
