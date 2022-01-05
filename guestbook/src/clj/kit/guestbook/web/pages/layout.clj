@@ -1,7 +1,7 @@
 (ns kit.guestbook.web.pages.layout
   (:require
    [clojure.java.io]
-   [selmer.parser :as parser]
+   [selmer.parser :as parser]   
    [ring.util.http-response :refer [content-type ok]]
    [ring.util.anti-forgery :refer [anti-forgery-field]]
    [ring.middleware.anti-forgery :refer [*anti-forgery-token*]]
@@ -11,6 +11,7 @@
 
 (defn init-selmer!
   []
+  (parser/add-filter! :format-date #(.format (java.text.SimpleDateFormat. "yyyy-MM-dd HH:mm") (java.util.Date. %)))
   (parser/add-tag! :csrf-field (fn [_ _] (anti-forgery-field))))
 
 (defn render

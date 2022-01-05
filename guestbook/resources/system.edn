@@ -47,14 +47,23 @@
 
  :router/core
  {:routes #ig/ref :router/routes}
- :reitit.routes/pages {:base-path "",
-                       :env #ig/ref :system/env}
- :db.sql/connection #profile {:prod {:jdbc-url JDBC_URL},
-                              :test {:jdbc-url "jdbc:sqlite:guestbook_test.db"},
-                              :dev {:jdbc-url "jdbc:sqlite:guestbook_dev.db"}}
- :db.sql/query-fn {:conn #ig/ref :db.sql/connection,
-                   :options {},
-                   :filename "sql/queries.sql"}
- :db.sql/migrations {:store :database,
-                     :db {:datasource #ig/ref :db.sql/connection},
-                     :migrate-on-init? true}}
+ 
+ :reitit.routes/pages
+ {:base-path "",
+  :query-fn #ig/ref :db.sql/query-fn
+  :env      #ig/ref :system/env}
+ 
+ :db.sql/connection #profile
+ {:prod {:jdbc-url JDBC_URL},
+  :test {:jdbc-url "jdbc:sqlite:guestbook_test.db"},
+  :dev {:jdbc-url "jdbc:sqlite:guestbook_dev.db"}}
+ 
+ :db.sql/query-fn
+ {:conn #ig/ref :db.sql/connection,
+  :options {},
+  :filename "sql/queries.sql"}
+ 
+ :db.sql/migrations
+ {:store :database,
+  :db {:datasource #ig/ref :db.sql/connection},
+  :migrate-on-init? true}}

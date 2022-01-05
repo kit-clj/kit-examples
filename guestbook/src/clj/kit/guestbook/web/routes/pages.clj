@@ -14,7 +14,7 @@
                      :title "Invalid anti-forgery token"})]
     #(wrap-anti-forgery % {:error-response error-page})))
 
-(defn home [request]
+(defn home [request]  
   (layout/render request "home.html" {:messages (guestbook/get-messages request)}))
 
 (defn error [request]
@@ -27,17 +27,17 @@
    ["/error" {:get error}]
    ["/save-message" {:post guestbook/save-message!}]])
 
-(defn route-data
-  [{:keys [template-opts]}]
-  {:swagger    {:id ::api}
-   :middleware [;; Default middleware for pages
-                (wrap-page-defaults)
+(defn route-data [opts]
+  (merge opts
+         {:swagger    {:id ::api}
+          :middleware [;; Default middleware for pages
+                       (wrap-page-defaults)
                 ;; query-params & form-params
-                parameters/parameters-middleware
+                       parameters/parameters-middleware
                 ;; encoding response body
-                muuntaja/format-response-middleware
+                       muuntaja/format-response-middleware
                 ;; exception handling
-                exception/wrap-exception]})
+                       exception/wrap-exception]}))
 
 (derive :reitit.routes/pages :reitit/routes)
 
