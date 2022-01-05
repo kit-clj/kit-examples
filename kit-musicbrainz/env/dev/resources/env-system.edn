@@ -1,0 +1,12 @@
+{:testcontainers/postgres {:db        "kit-musicbrainz"
+                           :username  "kit-musicbrainz"
+                           :password  "kit-musicbrainz"
+                           :data-path #profile {:dev  "devdata/postgres"
+                                                :test nil}}
+
+ :db.sql/dev-postgres     #ig/ref :testcontainers/postgres
+
+ :testcontainers/redis    {:data-path #profile {:dev  "devdata/redis"
+                                                :test nil}}
+
+ :cache/dev-redis         #ig/ref :testcontainers/redis}

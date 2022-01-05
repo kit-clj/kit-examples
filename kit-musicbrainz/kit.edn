@@ -1,0 +1,8 @@
+{:full-name "kit-clj/kit-musicbrainz"
+ :ns-name   "kit-clj.kit-musicbrainz"
+ :sanitized "kit_clj/kit_musicbrainz"
+ :name      "kit-musicbrainz"
+ :modules   {:root         "modules"
+             :repositories [{:url  "git@github.com:kit-clj/modules.git"
+                             :tag  "master"
+                             :name "kit-modules"}]}}
