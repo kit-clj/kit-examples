@@ -22,7 +22,7 @@
 
 ;; Routes
 (defn page-routes [_opts]
-  [["/" {:get home}]
+  [["/" {:get home}]   
    ["/save-message" {:post guestbook/save-message!}]])
 
 (defn route-data [opts]
