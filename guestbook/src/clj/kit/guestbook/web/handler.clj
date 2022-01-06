@@ -24,7 +24,6 @@
 
 (defmethod ig/init-key :router/routes
   [_ {:keys [routes]}]
-  (prn routes)
   (apply concat routes))
 
 (defmethod ig/init-key :router/core

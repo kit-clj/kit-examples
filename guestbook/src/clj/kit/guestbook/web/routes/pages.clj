@@ -29,11 +29,11 @@
   (merge opts
          {:middleware [;; Default middleware for pages
                        (wrap-page-defaults)
-                ;; query-params & form-params
+                       ;; query-params & form-params
                        parameters/parameters-middleware
-                ;; encoding response body
+                       ;; encoding response body
                        muuntaja/format-response-middleware
-                ;; exception handling
+                       ;; exception handling
                        exception/wrap-exception]}))
 
 (derive :reitit.routes/pages :reitit/routes)
