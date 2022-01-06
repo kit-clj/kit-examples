@@ -11,9 +11,8 @@
     [reitit.swagger :as swagger]))
 
 ;; Routes
-(defn api-routes [base-path]
-  [base-path
-   ["/swagger.json"
+(defn api-routes [_opts]
+  [["/swagger.json"
     {:get {:no-doc  true
            :swagger {:info {:title " API"}}
            :handler (swagger/create-swagger-handler)}}]
@@ -49,4 +48,4 @@
   [_ {:keys [base-path]
       :or   {base-path ""}
       :as   opts}]
-  ["" (route-data opts) (api-routes base-path)])
+  [base-path (route-data opts) (api-routes opts)])

@@ -21,9 +21,8 @@
                                         :errors (:errors flash)})))
 
 ;; Routes
-(defn page-routes [base-path]
-  [base-path
-   ["/" {:get home}]   
+(defn page-routes [_opts]
+  [["/" {:get home}]
    ["/save-message" {:post guestbook/save-message!}]])
 
 (defn route-data [opts]
@@ -44,4 +43,4 @@
       :or   {base-path ""}
       :as   opts}]
   (layout/init-selmer!)
-  ["" (route-data opts) (page-routes base-path)])
+  [base-path (route-data opts) (page-routes opts)])
