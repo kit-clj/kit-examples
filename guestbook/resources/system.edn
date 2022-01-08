@@ -7,7 +7,7 @@
  {:port #long #or [#env REPL_PORT 7000]
   :host #or [#env REPL_HOST "0.0.0.0"]}
 
- :server/undertow
+ :server/http
  {:port #long #or [#env PORT 3000]
   :host #or [#env HTTP_HOST "0.0.0.0"]
   :handler #ig/ref :handler/ring}
@@ -54,7 +54,7 @@
   :env      #ig/ref :system/env}
  
  :db.sql/connection #profile
- {:prod {:jdbc-url JDBC_URL},
+ {:prod {:jdbc-url #env JDBC_URL},
   :test {:jdbc-url "jdbc:sqlite:guestbook_test.db"},
   :dev {:jdbc-url "jdbc:sqlite:guestbook_dev.db"}}
  
