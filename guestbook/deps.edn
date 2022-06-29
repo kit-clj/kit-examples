@@ -40,7 +40,7 @@
 
 
            :dev  {:extra-deps  {;; uncomment to enable hot classpath reload in the REPL
-                                #_#_com.lambdaisland/classpath  {:mvn/version "0.0.27"}
+                                com.lambdaisland/classpath      {:mvn/version "0.0.27"}
                                 criterium/criterium             {:mvn/version "0.4.6"}
                                 expound/expound                 {:mvn/version "0.8.9"}
                                 integrant/repl                  {:mvn/version "0.3.2"}
@@ -59,7 +59,8 @@
                                 pjstadig/humane-test-output          {:mvn/version "0.11.0"}
                                 ring/ring-devel                      {:mvn/version "1.9.3"}
                                 ring/ring-mock                       {:mvn/version "0.4.0"}
-                                io.github.kit-clj/kit-generator      {:mvn/version "0.1.0"}}
+                                io.github.kit-clj/kit-generator      {:mvn/version "0.1.0"}
+                                com.lambdaisland/classpath           {:mvn/version "0.0.27"}}
                   :exect-fn    cognitect.test-runner.api/test
                   :extra-paths ["env/dev/clj" "env/dev/resources" "env/test/resources" "test/clj"]
                   :main-opts   ["-e" "(require 'pjstadig.humane-test-output) (pjstadig.humane-test-output/activate!)"
