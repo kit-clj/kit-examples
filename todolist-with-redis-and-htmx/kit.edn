@@ -1,0 +1,8 @@
+{:full-name "vc/r"
+ :ns-name   "vc.r"
+ :sanitized "vc/r"
+ :name      "r"
+ :modules   {:root         "modules"
+             :repositories [{:url  "https://github.com/kit-clj/modules.git"
+                             :tag  "master"
+                             :name "kit-modules"}]}}
