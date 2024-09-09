@@ -1,4 +1,4 @@
-(ns vc.r.web.routes.components
+(ns vc.r.web.controllers.components
   (:require [hiccup.core :as h]
             [garden.core :as g]))
 
