@@ -34,9 +34,11 @@
           [:form {:hx-post "/add"
                   :hx-target "#table-body"
                   :hx-swap "beforeend"
-                  :hx-headers (format "{\"X-CSRF-Token\": \"%s\"}" aft)}
+                  :hx-headers (format "{\"X-CSRF-Token\": \"%s\"}" aft)
+                  :hx-trigger "change from:body"}
            [:input {:type "text"
-                    :name "value"}]
+                    :name "value"
+                    :hx-trigger "change"}]
            [:button {:type "submit"} "add new item"]]
           [:table#item-list
            [:thead
