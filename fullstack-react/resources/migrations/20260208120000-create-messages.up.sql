@@ -1,0 +1,6 @@
+CREATE TABLE messages (
+    id         BIGINT AUTO_INCREMENT PRIMARY KEY,
+    author     VARCHAR(255) NOT NULL,
+    body       TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
