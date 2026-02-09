@@ -1,0 +1,8 @@
+{:full-name "kit/fullstack-react"
+ :ns-name   "kit.fullstack-react"
+ :sanitized "kit/fullstack_react"
+ :name      "fullstack-react"
+ :modules   {:root         "modules"
+             :repositories [{:url  "git@github.com:kit-clj/modules.git"
+                             :tag  "master"
+                             :name "kit-modules"}]}}
